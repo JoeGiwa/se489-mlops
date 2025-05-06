@@ -170,4 +170,7 @@ dependencies:
       - torchaudio==2.7.0
       - torchvision==0.22.0
       - types-python-dateutil==2.9.0.20241206
+      - xgboost
+      - optuna
+      - shap
 prefix: /Users/Giwa/anaconda3/envs/se489-mlops
