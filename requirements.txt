@@ -1,1 +1,15 @@
-torch >= 2.1.0
+xgboost
+optuna
+shap
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
+torch
+torchvision
+torchaudio
+mlflow
+cookiecutter
+mypy
+ruff
