@@ -1,26 +1,29 @@
 import torch
+import torch.nn as nn
+from torch import Tensor
 
-class MyNeuralNet(torch.nn.Module):
-    """ Basic neural network class. 
-    
+class MyNeuralNet(nn.Module):  # type: ignore[misc]
+    """
+    Basic feedforward neural network.
+
     Args:
-        in_features: number of input features
-        out_features: number of output features
-    
+        in_features (int): Number of input features.
+        out_features (int): Number of output features.
     """
     def __init__(self, in_features: int, out_features: int) -> None:
-        self.l1 = torch.nn.Linear(in_features, 500)
-        self.l2 = torch.nn.Linear(500, out_features)
-        self.r = torch.nn.ReLU()
-    
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """Forward pass of the model.
-        
+        super().__init__()  # ✅ Correctly initializes the base class
+        self.l1 = nn.Linear(in_features, 500)
+        self.relu = nn.ReLU()
+        self.l2 = nn.Linear(500, out_features)
+
+    def forward(self, x: Tensor) -> Tensor:
+        """
+        Forward pass of the model.
+
         Args:
-            x: input tensor expected to be of shape [N,in_features]
+            x (Tensor): Input tensor with shape [N, in_features].
 
         Returns:
-            Output tensor with shape [N,out_features]
-
+            Tensor: Output tensor with shape [N, out_features].
         """
-        return self.l2(self.r(self.l1(x)))
+        return self.l2(self.relu(self.l1(x)))
