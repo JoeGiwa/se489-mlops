@@ -1,6 +1,6 @@
 # mlops_randproject
 
-Customer Churn Analytics Framework for Telecommunications
+Music Genre Classification
 
 ## Project structure
 
