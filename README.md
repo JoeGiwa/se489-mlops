@@ -2,7 +2,8 @@
 
 ## 1. Team Information
 Team Name: Team Random
-Team Members: - Lajja Desai (ldesai2@depaul.edu)
+Team Members: 
+              - Lajja Desai (ldesai2@depaul.edu)
               - Mitanshi Kapadiya (mkapadiy@depaul.edu)
               - Joseph Giwa (jgiwa@depaul.edu)
 Course & Section: SE489 Machine Learning Engineering for Production              
