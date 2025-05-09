@@ -22,7 +22,7 @@ Main Objectives:
 
 ## 3. Project Architecture Diagram
 
-![alt text](image-1.png)
+![alt text](https://github.com/JoeGiwa/se489-mlops/blob/main/img_1.jpeg)
 
 ## 4. Phase Deliverables
 PHASE1.md(./PHASE1.md): Project Design & Initial Model Development
