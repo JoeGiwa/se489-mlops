@@ -3,6 +3,9 @@
 
 This document presents the system planning, design choices, data engineering workflow, and model development activities completed in Phase 1 of the Music Genre Classification project, conducted as part of SE489 — Machine Learning Engineering for Production. This phase establishes a reproducible and modular ML pipeline foundation, incorporating modern MLOps tools.
 
+---
+
+
 ## 1. Project Proposal
 
 ### 1.1 Project Scope and Objectives
