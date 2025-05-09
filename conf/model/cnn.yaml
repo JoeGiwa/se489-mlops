@@ -1,0 +1,5 @@
+name: cnn
+num_filters: 32
+kernel_size: 3
+dropout: 0.3
+learning_rate: 0.0005
