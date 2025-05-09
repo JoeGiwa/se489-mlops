@@ -1,8 +1,8 @@
 # Music Genre Classification using Machine Learning and MLOps
 
 ## 1. Team Information
-Team Name: Team Random
-Team Members: 
+- Team Name: Team Random
+- Team Members: 
               - Lajja Desai (ldesai2@depaul.edu)
               - Mitanshi Kapadiya (mkapadiy@depaul.edu)
               - Joseph Giwa (jgiwa@depaul.edu)
@@ -26,7 +26,7 @@ Main Objectives:
 ![alt text](https://github.com/JoeGiwa/se489-mlops/blob/main/img_1.jpeg)
 
 ## 4. Phase Deliverables
-PHASE1.md(./PHASE1.md): Project Design & Initial Model Development
+PHASE1.md([./PHASE1.md](https://github.com/JoeGiwa/se489-mlops/blob/main/PHASE1.md)): Project Design & Initial Model Development
 
 ## 5. Setup Instructions
 
