@@ -11,10 +11,10 @@ This document presents the system planning, design choices, data engineering wor
 Music genre classification enables intelligent music indexing, recommendations, and playlist generation. Given the complexity of musical features and genre overlap, building a robust classifier for music genres is a challenging and impactful task.
 
 **Objective:**  
--Build a scalable ML pipeline to classify music into 10 genres.
--Compare traditional ML models with deep learning approaches.
--Apply MLOps practices for versioning, automation, reproducibility, and modularity.
--Automate training and evaluation workflows using tools like DVC, Hydra, and Make.
+- Build a scalable ML pipeline to classify music into 10 genres.
+- Compare traditional ML models with deep learning approaches.
+- Apply MLOps practices for versioning, automation, reproducibility, and modularity.
+- Automate training and evaluation workflows using tools like DVC, Hydra, and Make.
 
 **Success Metrics:**  
 Traditional ML (e.g., SVM, RF): ≥ 80% accuracy on feature vectors.
@@ -48,13 +48,13 @@ Fully reproducible pipeline using Git, DVC, and Docker.
 ### 1.3 Model Considerations
 
 - Traditional Models (baseline):
-Logistic Regression
-SVM
-Random Forest
+  - Logistic Regression
+  - SVM
+  - Random Forest
 - Deep Learning Models:
-CNN trained on mel-spectrogram images
-Layers: Conv2D → BatchNorm → MaxPool → Dropout → Dense → Softmax
-Regularization: Early stopping, learning rate scheduling, dropout
+  - CNN trained on mel-spectrogram images
+  - Layers: Conv2D → BatchNorm → MaxPool → Dropout → Dense → Softmax
+  - Regularization: Early stopping, learning rate scheduling, dropout
 
 ---
 
@@ -84,10 +84,10 @@ Regularization: Early stopping, learning rate scheduling, dropout
 
 ### 2.2 Environment Setup
 
--Python 3.11 with virtual environment
--requirements.txt generated and tracked
--Docker setup planned for training and inference environments
--Colab used for GPU-based training/testing
+- Python 3.11 with virtual environment
+- requirements.txt generated and tracked
+- Docker setup planned for training and inference environments
+- Colab used for GPU-based training/testing
 
 ---
 
@@ -106,9 +106,9 @@ Regularization: Early stopping, learning rate scheduling, dropout
 - Remote storage (GDrive) configured
 
 ### 3.3 Team Collaboration
-Lajja Desai: Data exploration, traditional model development
-Mitanshi Kapadiya: CNN modeling and performance tuning
-Joseph Siwa: Environment setup, DVC integration, config automation
+- Lajja Desai: Data exploration, traditional model development
+- Mitanshi Kapadiya: CNN modeling and performance tuning
+- Joseph Siwa: Environment setup, DVC integration, config automation
 
 ---
 
@@ -116,9 +116,9 @@ Joseph Siwa: Environment setup, DVC integration, config automation
 
 ### 4.1 Data Preparation
 
--Handled by data_split.py and extract_features.py
--Extracted MFCCs, ZCR, chroma, spectral features
--Data stored in NumPy arrays and CSV for training
+- Handled by data_split.py and extract_features.py
+- Extracted MFCCs, ZCR, chroma, spectral features
+- Data stored in NumPy arrays and CSV for training
 
 ### 4.2 Data Documentation
 
