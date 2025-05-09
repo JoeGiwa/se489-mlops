@@ -44,6 +44,25 @@ clean:
 data:
 	python $(PROJECT_NAME)/data/make_dataset.py
 
+train:
+	$(PYTHON_INTERPRETER) train.py
+ 
+## Push DVC-tracked data to remote
+push:
+	dvc push
+ 
+## Pull DVC-tracked data from remote
+pull:
+	dvc pull
+ 
+## Run linter (ruff)
+lint:
+	ruff .
+ 
+## Run type checker (mypy)
+check:
+	mypy .
+
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
