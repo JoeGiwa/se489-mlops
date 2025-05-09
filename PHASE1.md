@@ -88,7 +88,7 @@ Fully reproducible pipeline using Git, DVC, and Docker.
 ### 2.2 Environment Setup
 
 - Python 3.11 with virtual environment
-- requirements.txt generated and tracked
+- Generated and tracked requirements.txt 
 - Docker setup planned for training and inference environments
 - Colab used for GPU-based training/testing
 
