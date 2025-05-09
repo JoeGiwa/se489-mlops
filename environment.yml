@@ -173,4 +173,5 @@ dependencies:
       - xgboost
       - optuna
       - shap
+      - hydra-core>=1.3
 prefix: /Users/Giwa/anaconda3/envs/se489-mlops
