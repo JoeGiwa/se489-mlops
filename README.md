@@ -63,9 +63,9 @@ ruff check .
 mypy src/
 
 ## 6. Contribution Summary
-Lajja Desai: Worked on data preprocessing and exploring data analyis, set up training pipeline and callbacks.
-Mitanshi Kapadiya: Implemented DNN architecture in model training, handled cross-validation in model_performance.
-Joseph Giwa: Set up the Github repository structure and environment, integrated Hydra, and initialized DVC datset tracking.
+- Lajja Desai: Worked on data preprocessing and exploring data analyis, set up training pipeline and callbacks.
+- Mitanshi Kapadiya: Implemented DNN architecture in model training, handled cross-validation in model_performance.
+- Joseph Giwa: Set up the Github repository structure and environment, integrated Hydra, and initialized DVC datset tracking.
 
 ## 7. References
 •⁠  ⁠GTZAN Genre Collection: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
