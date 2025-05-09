@@ -160,6 +160,6 @@ Fully reproducible pipeline using Git, DVC, and Docker.
 
 ---
 
-### phase 1 Outcome:
--Phase 1 delivers a robust genre classification pipeline with reproducible setup, modular design, and baseline models. With configurations tracked via Hydra, data and models versioned with DVC, and automated evaluation steps in place, the project is well-positioned for Phase 2 advancements including experiment tracking, deployment, and CI/CD.
+### Phase 1 Outcome:
+- Phase 1 delivers a robust genre classification pipeline with reproducible setup, modular design, and baseline models. With configurations tracked via Hydra, data and models versioned with DVC, and automated evaluation steps in place, the project is well-positioned for Phase 2 advancements including experiment tracking, deployment, and CI/CD.
 
