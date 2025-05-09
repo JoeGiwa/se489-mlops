@@ -6,7 +6,7 @@
   - Lajja Desai (ldesai2@depaul.edu)
   - Mitanshi Kapadiya (mkapadiy@depaul.edu)
   - Joseph Giwa (jgiwa@depaul.edu)
-Course & Section: SE489 Machine Learning Engineering for Production              
+- Course & Section: SE489 Machine Learning Engineering for Production              
 
 ## 2. Project Overview
 Summary:  
@@ -26,7 +26,7 @@ Main Objectives:
 ![alt text](https://github.com/JoeGiwa/se489-mlops/blob/main/img_1.jpeg)
 
 ## 4. Phase Deliverables
-([./PHASE1.md](https://github.com/JoeGiwa/se489-mlops/blob/main/PHASE1.md)): Project Design & Initial Model Development
+([PHASE1.md](https://github.com/JoeGiwa/se489-mlops/blob/main/PHASE1.md)): Project Design & Initial Model Development
 
 ## 5. Setup Instructions
 
