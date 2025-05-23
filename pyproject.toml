@@ -15,7 +15,7 @@ requires-python = ">=3.11"
 dynamic = ["dependencies", "optional-dependencies"]
 
 [tool.setuptools]
-packages = ["mlops_randproject"]
+packages = ["mlops_randproject", "mlops_randproject.models", "mlops_randproject.data"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

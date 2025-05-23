@@ -1,0 +1,31 @@
+defaults:
+  - model: xgboost  # Default model, override with `model=cnn` or `model=mlp`
+  - predict: predict
+  - _self_
+
+data:
+  path: data/raw
+  sample_rate: 22050
+
+train:
+  test_size: 0.2
+  random_state: 42
+  batch_size: 32
+  epochs: 100
+  validation_split: 0.2
+
+  # Early stopping and LR scheduler
+  early_stopping:
+    monitor: val_loss
+    patience: 10
+    restore_best_weights: true
+
+  reduce_lr_on_plateau:
+    monitor: val_loss
+    factor: 0.5
+    patience: 5
+    min_lr: 1e-6
+
+hydra:
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${model.name}_${now:%H-%M-%S}

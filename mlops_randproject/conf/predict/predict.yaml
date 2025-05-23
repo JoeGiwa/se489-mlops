@@ -1,0 +1,5 @@
+# conf/predict.yaml
+
+test_features_path: /app/artifacts/test_features.npy
+weights_path: /app/artifacts/model.weights.h5
+output_file: /app/artifacts/predictions_${model.name}.txt

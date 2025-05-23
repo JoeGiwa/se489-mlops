@@ -1,0 +1,30 @@
+model:
+  name: mlp
+  hidden1: 128
+  hidden2: 64
+  dropout: 0.5
+  l2: 0.001
+  output: 10
+  optimizer: adam
+predict:
+  test_features_path: artifacts/test_features.npy
+  weights_path: artifacts/model_weights.weights.h5
+  output_file: ${hydra:run.dir}/predictions_${model.name}.txt
+data:
+  path: data/raw
+  sample_rate: 22050
+train:
+  test_size: 0.2
+  random_state: 42
+  batch_size: 32
+  epochs: 2
+  validation_split: 0.2
+  early_stopping:
+    monitor: val_loss
+    patience: 10
+    restore_best_weights: true
+  reduce_lr_on_plateau:
+    monitor: val_loss
+    factor: 0.5
+    patience: 5
+    min_lr: 1.0e-06
