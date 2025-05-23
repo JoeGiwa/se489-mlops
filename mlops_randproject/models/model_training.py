@@ -3,6 +3,7 @@
 import os
 import hydra
 import numpy as np
+import logging
 from omegaconf import OmegaConf, DictConfig
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Input, Dropout, BatchNormalization
@@ -12,6 +13,13 @@ from mlops_randproject.model_zoo import build_cnn, build_mlp, build_xgboost
 import joblib
 
 from mlops_randproject.data.data_split import load_and_split_data
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 def build_model_2(input_shape, cfg):
     model = Sequential([
@@ -32,8 +40,10 @@ def build_model_2(input_shape, cfg):
 
 @hydra.main(config_path="../conf", config_name="config", version_base="1.2")
 def main(cfg: DictConfig):
+    logger.info(f" Starting training for model: {cfg.model.name.upper()}")
     X1_train_scaled, X1_test_scaled, y1_train, y1_test, label_encoder, scaler = load_and_split_data(version="30_sec")
     input_shape = X1_train_scaled.shape[1]
+    
     if cfg.model.name == "cnn":
         X1_train_scaled = X1_train_scaled.reshape(-1, X1_train_scaled.shape[1], 1, 1)
         X1_test_scaled = X1_test_scaled.reshape(-1, X1_test_scaled.shape[1], 1, 1)
@@ -58,7 +68,7 @@ def main(cfg: DictConfig):
             patience=cfg.train.reduce_lr_on_plateau.patience,
             min_lr=cfg.train.reduce_lr_on_plateau.min_lr,
 )
-
+        logger.info(" Training model...")
         history = model.fit(
             X1_train_scaled, y1_train,
             epochs=cfg.train.epochs,
@@ -73,21 +83,32 @@ def main(cfg: DictConfig):
         os.makedirs("artifacts", exist_ok=True)
         model.save_weights(os.path.join(artifact_dir, "model.weights.h5"))
         joblib.dump(history.history, os.path.join(artifact_dir, "history.pkl"))
+        logger.info(" Model training complete and weights saved.")
+
     else:
         # Train and save XGBoost model
+        logger.info(" Training XGBoost model...")
         os.makedirs(artifact_dir, exist_ok=True)
         model.fit(X1_train_scaled, y1_train)
         os.makedirs("artifacts", exist_ok=True)
         joblib.dump(model, os.path.join(artifact_dir, "xgboost_model.pkl"))
         joblib.dump(label_encoder, os.path.join(artifact_dir, "label_encoder.pkl"))
         joblib.dump(scaler, os.path.join(artifact_dir, "scaler.pkl"))
+        logger.info(" XGBoost model and preprocessors saved.")
+
 
     # Save config used
     with open("artifacts/used_config.yaml", "w") as f:
         OmegaConf.save(config=cfg, f=f)
-        
-    np.save("artifacts/test_features.npy", X1_test_scaled)
+    logger.info("Config saved with run artifacts.")
 
-    print("Training complete!")
+    np.save("artifacts/test_features.npy", X1_test_scaled)
+    logger.info("Training complete!")
+    
+    
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        logger.exception(" Error occurred during model training.")
+        raise
