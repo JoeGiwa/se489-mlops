@@ -26,8 +26,8 @@ jobs:
       - name: 🔑 Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERUSERNAME }}
-          password: ${{ secrets.DOCKERPASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: ⚖️ Build and push Docker image
         uses: docker/build-push-action@v5
@@ -35,4 +35,4 @@ jobs:
           context: .
           file: dockerfiles/predict_model.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERUSERNAME }}/mlops-predict:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-predict:latest
