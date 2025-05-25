@@ -15,3 +15,5 @@ RUN pip install -r requirements.txt --no-cache-dir
 RUN pip install . --no-deps --no-cache-dir
 
 ENTRYPOINT ["python", "-u", "mlops_randproject/models/predict_model.py"]
+# Add a comment at the end
+# Trigger for GitHub Actions
