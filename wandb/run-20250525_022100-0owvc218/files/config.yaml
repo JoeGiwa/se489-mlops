@@ -1,0 +1,71 @@
+_wandb:
+    value:
+        cli_version: 0.19.11
+        m: []
+        python_version: 3.10.13
+        t:
+            "1":
+                - 2
+                - 3
+                - 5
+                - 6
+                - 50
+                - 53
+                - 55
+                - 105
+            "2":
+                - 2
+                - 3
+                - 5
+                - 6
+                - 50
+                - 53
+                - 55
+                - 105
+            "3":
+                - 2
+                - 3
+                - 13
+                - 16
+                - 23
+                - 55
+            "4": 3.10.13
+            "5": 0.19.11
+            "8":
+                - 5
+            "12": 0.19.11
+            "13": darwin-arm64
+data:
+    value:
+        path: data/raw
+        sample_rate: 22050
+model:
+    value:
+        dropout: 0.5
+        hidden1: 128
+        hidden2: 64
+        l2: 0.001
+        name: mlp
+        optimizer: adam
+        output: 10
+predict:
+    value:
+        output_file: outputs/2025-05-25/mlp_02-20-59/predictions_mlp.txt
+        test_features_path: ./artifacts/test_features.npy
+        weights_path: ./artifacts/model.weights.h5
+train:
+    value:
+        batch_size: 32
+        early_stopping:
+            monitor: val_loss
+            patience: 10
+            restore_best_weights: true
+        epochs: 100
+        random_state: 42
+        reduce_lr_on_plateau:
+            factor: 0.5
+            min_lr: 1e-06
+            monitor: val_loss
+            patience: 5
+        test_size: 0.2
+        validation_split: 0.2
