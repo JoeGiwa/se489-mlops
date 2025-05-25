@@ -39,7 +39,8 @@ def main(cfg: DictConfig):
 
             # Initialize model
             model = Sequential()
-            input_shape = test_features.shape[1]
+            input_shape = (test_features.shape[1], 1, 1)  # becomes (58, 1, 1)
+            test_features = np.reshape(test_features, (-1, 58, 1, 1))
 
             # Load model architecture based on config
             if cfg.model.name == "mlp":
