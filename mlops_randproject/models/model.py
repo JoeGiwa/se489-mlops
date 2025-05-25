@@ -27,3 +27,4 @@ class MyNeuralNet(nn.Module):  # type: ignore[misc]
             Tensor: Output tensor with shape [N, out_features].
         """
         return self.l2(self.relu(self.l1(x)))
+    pass

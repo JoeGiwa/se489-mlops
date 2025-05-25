@@ -1,46 +1,42 @@
-#Importing necessary packages
+# data/data_preprocess.py
+
+import os
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-df = pd.read_csv("C:/Users/lajja/Desktop/se489-mlops/data/music-dataset/features_3_sec.csv")
-df2 = pd.read_csv("C:/Users/lajja/Desktop/se489-mlops/data/music-dataset/features_30_sec.csv")
-df.head()
+# Construct safe relative paths
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+data_path_3sec = os.path.join(BASE_DIR, "music-dataset", "features_3_sec.csv")
+data_path_30sec = os.path.join(BASE_DIR, "music-dataset", "features_30_sec.csv")
 
-df2.head()
+# Load datasets
+df = pd.read_csv(data_path_3sec)
+df2 = pd.read_csv(data_path_30sec)
 
-# Data type of the data
-df.dtypes
-
-# Let's simulate loading the data and calculating descriptive statistics
-# Display basic statistics of the dataset
-df.describe()
-
-# Shape of the data
-df.shape
-
-print("Columns containing missing values", list(df.columns[df.isnull().any()]))
-
-from sklearn.preprocessing import LabelEncoder
-
-# Assuming df.iloc[:, :-1] contains the feature columns and df.iloc[:, -1] contains the genre labels
-X = df.iloc[:, :-1]
-y = df.iloc[:, -1]  # Genre labels
-
-# For the 30 sec dataset 
-X1 = df2.iloc[:, :-1]
-y1 = df2.iloc[:, -1] 
-
-# Initialize the label encoder
-label_encoder = LabelEncoder()
-
-# Fit the encoder on the full dataset's labels to capture all possible classes
-y_encoded = label_encoder.fit_transform(y)
-y1_encoded = label_encoder.fit_transform(y1)
-
-#features
-print(df.iloc[:,:-1])
-
-# Drop the column 'filename' as it is no longer required for training
-df.drop(labels="filename", axis=1, inplace=True) 
-
+# Drop non-feature columns
+df.drop(labels="filename", axis=1, inplace=True)
 df2.drop(labels="filename", axis=1, inplace=True)
+
+# Split into features and labels
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+
+X1 = df2.iloc[:, :-1]
+y1 = df2.iloc[:, -1]
+
+# Encode genre labels
+label_encoder = LabelEncoder()
+y_encoded = label_encoder.fit_transform(y)
+y1_encoded = label_encoder.transform(y1)  # use same encoder
+
+# Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X)
+X1_train_scaled = scaler.transform(X1)
+
+# Exported variables for training
+# Use these in model_training.py
+X1_train_scaled = X1_train_scaled
+y1_train = y1_encoded
+label_encoder = label_encoder
+scaler = scaler

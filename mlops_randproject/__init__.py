@@ -1,4 +1,4 @@
-from mlops_randproject.models.model import MyNeuralNet
-from mlops_randproject.predict_model import predict
+# from mlops_randproject.models.model import MyNeuralNet
+# from mlops_randproject.predict_torch import predict
 
-__all__ = ["MyNeuralNet", "predict"]
+# __all__ = ["MyNeuralNet", "predict"]

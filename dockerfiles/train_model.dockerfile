@@ -14,4 +14,6 @@ WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
 RUN pip install . --no-deps --no-cache-dir
 
-ENTRYPOINT ["python", "-u", "mlops_randproject/train_model.py"]
+ENTRYPOINT ["python", "-u", "mlops_randproject/models/model_training.py", "model=mlp", "train.epochs=2"]
+
+# ENTRYPOINT ["python", "-u", "mlops_randproject/models/model_training.py"]

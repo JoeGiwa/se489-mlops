@@ -14,3 +14,4 @@ cookiecutter
 mypy
 ruff
 hydra-core>=1.3
+tensorflow
