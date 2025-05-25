@@ -1,4 +1,3 @@
-# .github/workflows/predict.yml
 
 name: CI/CD - Predict Pipeline
 
