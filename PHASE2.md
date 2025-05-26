@@ -17,7 +17,9 @@
 ## 2. Monitoring & Debugging
 
 - Runtime system resource monitoring (CPU/RAM) integrated via custom logging thread.
+- 
   Example: `[MONITOR] CPU usage: 32.5%, Memory usage: 74.3%`
+  
 - Debugging tools used include pdb and rich.logging for enhanced tracebacks and log clarity.
 
 ## 3. Profiling & Optimization
@@ -67,6 +69,7 @@
     - Docker usage
     - Logging/monitoring setup
     - Model training & prediction instructions
+
 
 **PHASE 2 Outcome:**
  All of the requirements have been met. Our project now uses Docker for reproducibility, MLflow for experiment tracking, and structured logging to support monitoring and debugging. Hydra and config files support modular experimentation.
