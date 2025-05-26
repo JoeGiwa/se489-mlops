@@ -64,7 +64,7 @@
 - GitHub Actions configured to:
     - Auto-build and push Docker images to Docker Hub
     - Use DOCKERHUB_USERNAME and DOCKERHUB_TOKEN secrets
-    - 
+      
 - README.md and Phase 2 documentation updated to reflect:
     - Docker usage
     - Logging/monitoring setup
