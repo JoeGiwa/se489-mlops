@@ -1,5 +1,5 @@
 
-#PHASE 02: Enhancing ML Operations with Containerization & Monitoring
+# PHASE 02: Enhancing ML Operations with Containerization & Monitoring
 
 ## 1. Containerization
 - Dockerfiles created for both training train_model.dockerfile and prediction predict_model.dockerfile.
