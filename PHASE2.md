@@ -9,7 +9,9 @@
 **Containers tested using:**
 
 `docker build -f dockerfiles/train_model.dockerfile -t mlops-train .`
+
 `docker build -f dockerfiles/predict_model.dockerfile -t mlops-predict .`
+
 `docker run -v $(pwd)/artifacts:/app/artifacts mlops-train`
 
 ## 2. Monitoring & Debugging
@@ -23,6 +25,7 @@
 - Implemented performance profiling with `cProfile`:
   
   `python profiling/profile_train.py model=cnn`
+  
   `python -m pstats profiling/train_profile.prof`
 
 - `.prof` results help identify bottlenecks in training/inference.
