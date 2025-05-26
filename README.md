@@ -27,6 +27,7 @@ Main Objectives:
 
 ## 4. Phase Deliverables
 [PHASE1.md](https://github.com/JoeGiwa/se489-mlops/blob/main/PHASE1.md): Project Design & Initial Model Development
+[PHASE2.md](https://github.com/JoeGiwa/se489-mlops/blob/main/PHASE2.md): Enhancing ML Operations with Containerization & Monitoring
 
 ## 5. Setup Instructions
 
@@ -43,6 +44,25 @@ source env/bin/activate      # On Windows: env\Scripts\activate
 
 3.⁠ ⁠Install dependencies
 pip install -r requirements.txt
+
+# Monitoring, Profiling & Tracking:
+
+Monitoring:
+System resource usage (CPU and memory) is logged during execution using a background monitoring thread.
+
+Profiling:
+Profiling scripts under the profiling/ directory generate .prof files for performance analysis using cProfile.
+
+Tracking:
+Training and prediction metrics are automatically logged to Weights & Biases (W&B). You can view experiment dashboards on the W&B platform.
+
+Logging:
+
+Logging is handled through Python’s built-in logging module, enhanced with rich for visually formatted outputs. Logs include system metrics, data flow steps, and W&B sync status.
+
+Configuration Management:
+
+Hydra is used for managing experiment configurations. All config files are located in the conf/ directory and support flexible CLI overrides for model selection and hyperparameter tuning.
 
 # Running the Code
 # Train the Model
