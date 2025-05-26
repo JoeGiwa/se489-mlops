@@ -41,6 +41,7 @@ Example: `[MONITOR] CPU usage: 32.5%, Memory usage: 74.3%`
 ## 6. Configuration Management
 - Project configurations managed with Hydra under `conf/.`
     - Allows modular, command-line configurable runs:
+      
       `python mlops_randproject/models/train_model.py model=xgboost train.epochs=5`
 
 ## 7. CI/CD & Documentation
