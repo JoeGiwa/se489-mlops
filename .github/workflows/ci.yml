@@ -26,11 +26,14 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements_dev.txt
 
-      - name: (Optional) DVC pull
+      - name: DVC pull
         run: |
-          pip install dvc
+          python -m pip install --upgrade pip
+          # install DVC core plus the Google Drive plugin
+          pip install "dvc[gdrive]"
+          # now pull your data
           dvc pull
-
+          
       - name: Lint with Ruff
         run: ruff check .
 
