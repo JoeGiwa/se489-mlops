@@ -38,11 +38,9 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements_tests.txt
 
-      - name: Set up DVC
-        uses: iterative/setup-dvc@v1
-        env:
-          DVC_NO_ANALYTICS: true
-          DVC_CHECK_UPDATE: false
+      - name: Install DVC with GDrive support
+        run: |
+          pip install 'dvc[gdrive]'
 
       - name: Restore GDrive credentials for DVC
         run: |
