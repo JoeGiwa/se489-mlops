@@ -42,19 +42,14 @@ jobs:
         run: |
           pip install 'dvc[gdrive]'
 
-      - name: Restore GDrive credentials for DVC
+      - name: Decode and write GDrive credentials
         run: |
-          echo "$GDRIVE_CREDENTIALS_DATA" > gdrive-credentials.json
           mkdir -p .dvc
+          echo "$GDRIVE_CREDENTIALS_DATA" | base64 --decode > .dvc/gdrive-credentials.json
           echo '[remote "myremote"]' > .dvc/config.local
-          echo '    gdrive_service_account_json_file_path = gdrive-credentials.json' >> .dvc/config.local
+          echo '    gdrive_service_account_json_file_path = .dvc/gdrive-credentials.json' >> .dvc/config.local
         env:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-
-      - name: Write GDrive credentials to file
-        run: |
-          mkdir -p .dvc
-          echo "${{ secrets.GDRIVE_CREDENTIALS_DATA }}" > .dvc/gdrive-credentials.json
 
 
       - name: Pull data with DVC
