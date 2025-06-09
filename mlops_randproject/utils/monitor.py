@@ -3,6 +3,7 @@ import time
 import logging
 import psutil
 
+
 class SystemMonitor:
     def __init__(self, interval=5):
         self.interval = interval
@@ -26,7 +27,9 @@ class SystemMonitor:
             self._started = True
             logging.info("[MONITOR] Monitoring thread started.")
         else:
-            logging.warning("[MONITOR] Monitoring thread is already running or was previously started.")
+            logging.warning(
+                "[MONITOR] Monitoring thread is already running or was previously started."
+            )
 
     def stop(self):
         if self._started:

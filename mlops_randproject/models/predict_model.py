@@ -2,7 +2,6 @@ import os
 import time
 import wandb
 import hydra
-import joblib
 import logging
 import numpy as np
 from datetime import datetime
@@ -15,15 +14,12 @@ from mlops_randproject.model_zoo import build_mlp, build_cnn
 
 
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(message)s",
-    datefmt="[%X]",
-    handlers=[RichHandler()]
+    level=logging.INFO, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()]
 )
 logger = logging.getLogger("mlops")
 console = Console()
 
-OmegaConf.register_new_resolver("env", lambda key, default="." : os.getenv(key, default))
+OmegaConf.register_new_resolver("env", lambda key, default=".": os.getenv(key, default))
 
 
 @hydra.main(config_path="../conf", config_name="config", version_base="1.2")
@@ -55,7 +51,6 @@ def main(cfg: DictConfig):
             model.load_weights(cfg.predict.weights_path)
             logger.info(" Model weights loaded.")
 
-
             # Make predictions
             logger.info(" Making predictions...")
             start_time = time.time()
@@ -69,31 +64,36 @@ def main(cfg: DictConfig):
             os.makedirs("artifacts", exist_ok=True)
             output_path = os.path.join("artifacts", cfg.predict.output_file)
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
-            np.savetxt(output_path, predicted_classes, fmt='%d')
+            np.savetxt(output_path, predicted_classes, fmt="%d")
             logger.info(f" Predictions saved to {output_path}")
-            
+
             # Log to Weights & Biases
-            run_name = f"{cfg.model.name}_predict_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            run_name = (
+                f"{cfg.model.name}_predict_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+            )
             wandb.init(
                 project="mlops-randproject-predict",
-                config=OmegaConf.to_container(cfg, resolve=True),  #Make config JSON-serializable
-                name=run_name
-            )          
-            wandb.log({
-                "num_predictions": len(predicted_classes),
-                "prediction_duration_sec": elapsed
-            })
+                config=OmegaConf.to_container(
+                    cfg, resolve=True
+                ),  # Make config JSON-serializable
+                name=run_name,
+            )
+            wandb.log(
+                {
+                    "num_predictions": len(predicted_classes),
+                    "prediction_duration_sec": elapsed,
+                }
+            )
             wandb.save(output_path)
             wandb.finish()
-            logger.info(" Logged predictions to Weights & Biases")    
+            logger.info(" Logged predictions to Weights & Biases")
             console.rule("[bold green]Prediction Complete ")
 
-
-        except Exception as e:
+        except Exception:
             console.print_exception()
             logger.exception(" Error occurred during prediction.")
             raise
 
-    
+
 if __name__ == "__main__":
     main()

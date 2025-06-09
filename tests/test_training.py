@@ -1,10 +1,10 @@
 import os
 import sys
-import numpy as np
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from mlops_randproject.train_model import train_model
+
 
 def test_training_runs_and_returns_model():
     model, history = train_model()

@@ -1,10 +1,10 @@
 # profile_train.py
 
 import cProfile
-import pstats
 import sys
 from pathlib import Path
 import os
+
 
 def main():
     # profile_train.py (update)
@@ -14,8 +14,8 @@ def main():
     print(f"[DEBUG] PYTHONPATH set to: {project_root}")
 
     # Command-line overrides (e.g., model=mlp train.epochs=2)
-    overrides = " ".join(sys.argv[1:])
-    module_command = f"import runpy; runpy.run_module('mlops_randproject.models.model_training', run_name='__main__')"
+    # overrides = " ".join(sys.argv[1:])
+    module_command = "import runpy; runpy.run_module('mlops_randproject.models.model_training', run_name='__main__')"
 
     output_file = Path(__file__).parent / "train_profile.prof"
     print(f" Profiling training script... Output: {output_file}")
@@ -24,6 +24,7 @@ def main():
 
     print(" Profiling complete. View with:")
     print(f"  python -m pstats {output_file}")
+
 
 if __name__ == "__main__":
     main()

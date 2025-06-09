@@ -19,10 +19,7 @@ OmegaConf.register_new_resolver("env", lambda key, default=".": os.getenv(key, d
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(message)s",
-    datefmt="[%X]",
-    handlers=[RichHandler()]
+    level=logging.INFO, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()]
 )
 logger = logging.getLogger("mlops")
 console = Console()
@@ -32,8 +29,8 @@ class WandbLogger(Callback):
     def on_epoch_end(self, epoch, logs=None):
         if logs:
             wandb.log(logs)
-            
-            
+
+
 # def build_model_2(input_shape, cfg):
 #     model = Sequential([
 #         Input(shape=(input_shape,)),
@@ -51,26 +48,29 @@ class WandbLogger(Callback):
 #     return model
 
 
-
 @hydra.main(config_path="../conf", config_name="config", version_base="1.2")
 def main(cfg: DictConfig):
-    with SystemMonitor(interval=5):  
+    with SystemMonitor(interval=5):
         console.rule("[bold blue]Model Training Started")
         console.log("Using configuration:", cfg)
-        
+
         logger.info(f" Starting training for model: {cfg.model.name.upper()}")
-        X1_train_scaled, X1_test_scaled, y1_train, y1_test, label_encoder, scaler = load_and_split_data(version="30_sec")
+        X1_train_scaled, X1_test_scaled, y1_train, y1_test, label_encoder, scaler = (
+            load_and_split_data(version="30_sec")
+        )
         input_shape = X1_train_scaled.shape[1]
-        
+
         run_name = f"{cfg.model.name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         wandb.init(
             project="mlops-randproject-train",
-            config=OmegaConf.to_container(cfg, resolve=True), 
-            name=run_name
-)
-    
+            config=OmegaConf.to_container(cfg, resolve=True),
+            name=run_name,
+        )
+
         if cfg.model.name == "cnn":
-            X1_train_scaled = X1_train_scaled.reshape(-1, X1_train_scaled.shape[1], 1, 1)
+            X1_train_scaled = X1_train_scaled.reshape(
+                -1, X1_train_scaled.shape[1], 1, 1
+            )
             X1_test_scaled = X1_test_scaled.reshape(-1, X1_test_scaled.shape[1], 1, 1)
             model = build_cnn(cfg.model, input_shape=(X1_train_scaled.shape[1], 1, 1))
         elif cfg.model.name == "mlp":
@@ -85,25 +85,25 @@ def main(cfg: DictConfig):
                 monitor=cfg.train.early_stopping.monitor,
                 patience=cfg.train.early_stopping.patience,
                 restore_best_weights=cfg.train.early_stopping.restore_best_weights,
-    )
+            )
 
             reduce_lr = ReduceLROnPlateau(
                 monitor=cfg.train.reduce_lr_on_plateau.monitor,
                 factor=cfg.train.reduce_lr_on_plateau.factor,
                 patience=cfg.train.reduce_lr_on_plateau.patience,
                 min_lr=cfg.train.reduce_lr_on_plateau.min_lr,
-                
-    )       
+            )
             logger.info(" Training model...")
             start_time = time.time()  # Start timer
             history = model.fit(
-                X1_train_scaled, y1_train,
+                X1_train_scaled,
+                y1_train,
                 epochs=cfg.train.epochs,
                 batch_size=cfg.train.batch_size,
                 validation_split=cfg.train.validation_split,
                 callbacks=[early_stop, reduce_lr, WandbLogger()],
-                verbose =1
-        )
+                verbose=1,
+            )
             elapsed = time.time() - start_time  # Stop timer
             logger.info(f"⏱️ Training took {elapsed:.2f} seconds.")
 
@@ -128,9 +128,8 @@ def main(cfg: DictConfig):
             joblib.dump(label_encoder, os.path.join(artifact_dir, "label_encoder.pkl"))
             joblib.dump(scaler, os.path.join(artifact_dir, "scaler.pkl"))
             logger.info(" XGBoost model and preprocessors saved.")
-        
+
         wandb.finish()
-        
 
         # Save config used
         with open("artifacts/used_config.yaml", "w") as f:
@@ -140,13 +139,11 @@ def main(cfg: DictConfig):
         logger.info("Training complete!")
         console.rule("[bold green]Training Pipeline Complete ")
 
-    
 
-    
 if __name__ == "__main__":
     try:
         main()
-    except Exception as e:
+    except Exception:
         console.print_exception()
         logger.exception(" Error occurred during model training.")
         raise

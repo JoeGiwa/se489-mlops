@@ -32,4 +32,3 @@ jobs:
           file: dockerfiles/train_model.dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-train:latest,${{ secrets.DOCKERHUB_USERNAME }}/mlops-train:v1
-
