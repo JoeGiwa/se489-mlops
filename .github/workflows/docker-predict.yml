@@ -34,6 +34,7 @@ jobs:
           context: .
           file: dockerfiles/predict_model.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-predict:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-predict:latest,${{ secrets.DOCKERHUB_USERNAME }}/mlops-predict:v1
+
 
           
