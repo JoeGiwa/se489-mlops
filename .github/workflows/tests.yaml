@@ -7,6 +7,7 @@ on:
     branches: [main]
 
 jobs:
+  # Job to run unit tests across multiple OS and Python versions
   test:
     runs-on: ${{ matrix.os }}
     strategy:
