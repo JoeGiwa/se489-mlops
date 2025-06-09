@@ -2,9 +2,14 @@ name: Run Unit Tests
 
 on:
   push:
-    branches: [main]
+    branches: 
+      - main
+      - phase3_v2
+
   pull_request:
-    branches: [main]
+    branches: 
+      - main
+      - phase3_v2
 
 jobs:
   # Job to run unit tests across multiple OS and Python versions
