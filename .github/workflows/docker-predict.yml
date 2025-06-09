@@ -6,6 +6,7 @@ on:
     branches:
       - hydra-config-setup
       - main
+      - phase3_v2
     paths:
       - 'dockerfiles/predict_model.dockerfile'
       - 'mlops_randproject/models/predict_model.py'
