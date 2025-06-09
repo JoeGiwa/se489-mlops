@@ -40,6 +40,9 @@ jobs:
 
       - name: Set up DVC
         uses: iterative/setup-dvc@v1
+        env:
+          DVC_NO_ANALYTICS: true
+          DVC_CHECK_UPDATE: false
 
       - name: Restore GDrive credentials for DVC
         run: |
