@@ -75,19 +75,19 @@ Configuration Management:
 Hydra is used for managing experiment configurations. All config files are located in the conf/ directory and support flexible CLI overrides for model selection and hyperparameter tuning.
 
 # Running the Code
-# Train the Model
+### Train the Model
 ```
 python model_training.py
 ```
-# Evaluate Model Performance & Visualize
+### Evaluate Model Performance & Visualize
 ```
 python model_performance.py
 ```
-# Data Versioning with DVC
+### Data Versioning with DVC
 ```
 dvc pull
 ```
-# Linting & Type Checking
+### Linting & Type Checking
 ```
 ruff check .
 mypy src/
@@ -99,22 +99,13 @@ mypy src/
 - Joseph Giwa: Integrated Hydra, initialized DVC datset tracking, Monitoring and Profiling, and Deployment.
 
 ## 7. References
-•⁠  ⁠GTZAN Genre Collection: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
+•⁠  ⁠GTZAN Genre Collection: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification: A benchmark dataset consisting of 1,000 audio tracks across 10 music genres, used for genre classification research.
 
-A benchmark dataset consisting of 1,000 audio tracks across 10 music genres, used for genre classification research.
-
-•⁠  ⁠Frameworks & Libraries
-
-TensorFlow/Keras – Deep learning framework used for building and training DNN models
-
-Scikit-learn – Traditional machine learning and evaluation metrics
-
-Matplotlib & Seaborn – Data visualization libraries
-
-Hydra – Configurable experiment management system
-
-DVC (Data Version Control) – Tracks datasets and model artifacts alongside Git
-
-Ruff – Fast Python linter
-
-MyPy – Static type checker for Python
+•⁠  ⁠Frameworks & Libraries: 
+- TensorFlow/Keras – Deep learning framework used for building and training DNN models
+- Scikit-learn – Traditional machine learning and evaluation metrics
+- Matplotlib & Seaborn – Data visualization libraries
+- Hydra – Configurable experiment management system
+- DVC (Data Version Control) – Tracks datasets and model artifacts alongside Git
+- Ruff – Fast Python linter
+- MyPy – Static type checker for Python
