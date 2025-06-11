@@ -38,10 +38,10 @@
 
 ```python -m venv venv
 source venv/bin/activate        # On Windows: venv\Scripts\activate
-pip install -r requirements.txt```
+pip install -r requirements.txt
 
 ### Clone the repository
-git clone https://github.com/JoeGiwa/se489-mlops.git
+```git clone https://github.com/JoeGiwa/se489-mlops.git
 cd se489-mlops
 
 ### ⁠Create a virtual environment
