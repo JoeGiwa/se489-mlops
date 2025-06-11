@@ -68,11 +68,10 @@ def main(cfg: DictConfig):
         )
 
         if cfg.model.name == "cnn":
-            X1_train_scaled = X1_train_scaled.reshape(
-                -1, X1_train_scaled.shape[1], 1, 1
-            )
-            X1_test_scaled = X1_test_scaled.reshape(-1, X1_test_scaled.shape[1], 1, 1)
-            model = build_cnn(cfg.model, input_shape=(X1_train_scaled.shape[1], 1, 1))
+            X1_train_scaled = X1_train_scaled.reshape(-1, X1_train_scaled.shape[1], 1)
+            X1_test_scaled = X1_test_scaled.reshape(-1, X1_test_scaled.shape[1], 1)
+            model = build_cnn(cfg.model, input_shape=X1_train_scaled.shape[1])
+
         elif cfg.model.name == "mlp":
             model = build_mlp(cfg.model, input_shape=input_shape)
         elif cfg.model.name == "xgboost":
@@ -136,6 +135,7 @@ def main(cfg: DictConfig):
             OmegaConf.save(config=cfg, f=f)
         logger.info("Config saved with run artifacts.")
         np.save("artifacts/test_features.npy", X1_test_scaled)
+        np.save("artifacts/test_labels.npy", y1_test)
         logger.info("Training complete!")
         console.rule("[bold green]Training Pipeline Complete ")
 

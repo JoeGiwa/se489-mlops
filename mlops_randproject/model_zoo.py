@@ -8,7 +8,10 @@ from tensorflow.keras.layers import (
     Input,
 )
 from tensorflow.keras.regularizers import l2
-from tensorflow.keras.layers import Conv2D, MaxPooling2D
+from tensorflow.keras.layers import (
+    Conv1D,
+    MaxPooling1D,
+)
 
 
 def build_mlp(cfg, input_shape):
@@ -35,23 +38,26 @@ def build_mlp(cfg, input_shape):
 def build_cnn(cfg, input_shape):
     model = Sequential()
     model.add(
-        Conv2D(
-            cfg.filters[0],
+        Conv1D(
+            filters=cfg.filters[0],
             kernel_size=cfg.kernel_size,
             activation="relu",
-            input_shape=input_shape,
+            input_shape=(input_shape, 1),
         )
     )
-    model.add(MaxPooling2D(pool_size=cfg.pool_size))
+    model.add(MaxPooling1D(pool_size=cfg.pool_size))
     model.add(Dropout(cfg.dropout))
-    print(f"[DEBUG] CNN input shape: {input_shape}")
+    model.add(BatchNormalization())
 
     if cfg.conv_layers > 1:
         model.add(
-            Conv2D(cfg.filters[1], kernel_size=cfg.kernel_size, activation="relu")
+            Conv1D(
+                filters=cfg.filters[1], kernel_size=cfg.kernel_size, activation="relu"
+            )
         )
-        model.add(MaxPooling2D(pool_size=cfg.pool_size))
+        model.add(MaxPooling1D(pool_size=cfg.pool_size))
         model.add(Dropout(cfg.dropout))
+        model.add(BatchNormalization())
 
     model.add(Flatten())
     model.add(Dense(cfg.dense_units, activation="relu"))
