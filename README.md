@@ -35,8 +35,10 @@
 ## 5. Setup Instructions
 
 ### Environment Setup
-```
-Using venv (recommended)
+
+```python -m venv venv
+source venv/bin/activate        # On Windows: venv\Scripts\activate
+pip install -r requirements.txt```
 
 ### Clone the repository
 git clone https://github.com/JoeGiwa/se489-mlops.git
