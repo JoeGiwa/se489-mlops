@@ -99,9 +99,9 @@ mypy src/
 - Joseph Giwa: Integrated Hydra, initialized DVC datset tracking, Monitoring and Profiling, and Deployment.
 
 ## 7. References
-•⁠  ⁠GTZAN Genre Collection: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification: A benchmark dataset consisting of 1,000 audio tracks across 10 music genres, used for genre classification research.
+### ⁠GTZAN Genre Collection: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification: A benchmark dataset consisting of 1,000 audio tracks across 10 music genres, used for genre classification research.
 
-•⁠  ⁠Frameworks & Libraries: 
+### ⁠Frameworks & Libraries: 
 - TensorFlow/Keras – Deep learning framework used for building and training DNN models
 - Scikit-learn – Traditional machine learning and evaluation metrics
 - Matplotlib & Seaborn – Data visualization libraries
