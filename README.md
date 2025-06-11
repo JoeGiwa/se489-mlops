@@ -30,7 +30,7 @@ Problem Statement & Motivation:
 
 [PHASE2.md](https://github.com/JoeGiwa/se489-mlops/blob/main/PHASE2.md): Enhancing ML Operations with Containerization & Monitoring
 
-[PHASE.md](): Continuous Machine Learning (CML) and Deployment
+[PHASE3.md](): Continuous Machine Learning (CML) and Deployment
 
 ## 5. Setup Instructions
 
