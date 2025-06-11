@@ -35,6 +35,7 @@
 ## 5. Setup Instructions
 
 ### Environment Setup
+```
 Using venv (recommended)
 
 ### Clone the repository
