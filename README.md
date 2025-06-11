@@ -30,20 +30,22 @@ Problem Statement & Motivation:
 
 [PHASE2.md](https://github.com/JoeGiwa/se489-mlops/blob/main/PHASE2.md): Enhancing ML Operations with Containerization & Monitoring
 
+[PHASE.md](): Continuous Machine Learning (CML) and Deployment
+
 ## 5. Setup Instructions
 
-# Environment Setup
+### Environment Setup
 Using venv (recommended)
 
-1.⁠ ⁠Clone the repository
+### Clone the repository
 git clone https://github.com/JoeGiwa/se489-mlops.git
 cd se489-mlops
 
-2.⁠ ⁠Create a virtual environment
+### ⁠Create a virtual environment
 python -m venv env
 source env/bin/activate      # On Windows: env\Scripts\activate
 
-3.⁠ ⁠Install dependencies
+### Install dependencies
 pip install -r requirements.txt
 
 # Monitoring, Profiling & Tracking:
