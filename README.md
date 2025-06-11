@@ -35,21 +35,27 @@
 ## 5. Setup Instructions
 
 ### Environment Setup
-
-```python -m venv venv
+```
+python -m venv venv
 source venv/bin/activate        # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+```
 
 ### Clone the repository
-```git clone https://github.com/JoeGiwa/se489-mlops.git
+```
+git clone https://github.com/JoeGiwa/se489-mlops.git
 cd se489-mlops
-
+```
 ### ⁠Create a virtual environment
+```
 python -m venv env
 source env/bin/activate      # On Windows: env\Scripts\activate
+```
 
 ### Install dependencies
+```
 pip install -r requirements.txt
+```
 
 # Monitoring, Profiling & Tracking:
 
@@ -70,21 +76,22 @@ Hydra is used for managing experiment configurations. All config files are locat
 
 # Running the Code
 # Train the Model
-
+```
 python model_training.py
-
+```
 # Evaluate Model Performance & Visualize
-
+```
 python model_performance.py
-
+```
 # Data Versioning with DVC
-
+```
 dvc pull
-
+```
 # Linting & Type Checking
-
+```
 ruff check .
 mypy src/
+```
 
 ## 6. Contribution Summary
 - Lajja Desai: Data preprocessing, exploring data analyis, set up training pipeline and callbacks, and set up Unit Tests.
