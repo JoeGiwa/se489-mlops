@@ -1,5 +1,4 @@
 # Music Genre Classification using Machine Learning and MLOps
-
 ## 1. Team Information
 - Team Name: Team Random
 - Team Members: 
