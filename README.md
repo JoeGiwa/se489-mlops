@@ -175,7 +175,7 @@ gcloud run deploy music-genre-service \
 ## 9. Contribution Summary
 
 * **Lajja Desai:** Data preprocessing, analysis, training pipeline setup, unit tests
-* **Mitanshi Kapadiya:** DNN implementation, model evaluation, CI workflows
+* **Mitanshi Kapadiya:** DNN implementation, model evaluation, CI workflows, Documentations
 * **Joseph Giwa:** Hydra configs, DVC integration, monitoring, GCP deployment
 
 ---
