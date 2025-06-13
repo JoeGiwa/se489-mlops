@@ -217,5 +217,5 @@ gcloud artifacts repositories delete music-repo --location=europe-west1
 This project demonstrates a complete MLOps lifecycle: from training to deployment and monitoring. It is CI/CD-ready, cloud-scalable, and supports continuous evaluation. Future work may include model drift detection, Hugging Face hosting, and retraining pipelines.
 
 ---
-
+**Authors**: SE-489 Team
 **License**: MIT
