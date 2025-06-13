@@ -121,4 +121,4 @@ All required Phase 3 deliverables are completed:
 
 Only optional enhancements such as Hugging Face UI and full unit test coverage remain outside scope. The project is now production-ready with automated training, serving, UI, and evaluation integrated.
 
-> **Next Step:** Run full validation test, capture final deployment screenshots, and finalize the README.
+> **Next Step:** Run full validation test, capture final deployment screenshots, and finalize the README. 
