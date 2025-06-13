@@ -4,10 +4,13 @@ from typing import List
 import numpy as np
 from functools import lru_cache
 import joblib
+from starlette.middleware.base import BaseHTTPMiddleware
+import time
 import os
 from enum import Enum
 from omegaconf import OmegaConf
 from mlops_randproject.model_zoo import build_mlp, build_cnn
+from prometheus_fastapi_instrumentator import Instrumentator
 import logging
 
 model_cache = {}
@@ -22,6 +25,9 @@ NUM_FEATURES = 58
 
 # --- FastAPI Init ---
 app = FastAPI()
+
+# Instrumentation for Prometheus
+Instrumentator().instrument(app).expose(app)
 
 
 # --- Enums ---
@@ -82,15 +88,27 @@ def load_model(model_name: ModelType):
     return model
 
 
+# --- Middleware for Logging ---
+
+
+class LoggingMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        start_time = time.time()
+        response = await call_next(request)
+        process_time = time.time() - start_time
+        logger.info(
+            f"{request.method} {request.url.path} - Status: {response.status_code} - Time: {process_time:.4f}s"
+        )
+        return response
+
+
+app.add_middleware(LoggingMiddleware)
+
+
 # --- Routes ---
 @app.get("/")
 def read_root():
     return {"message": "ML Inference API is running!"}
-
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
 
 
 @app.get("/info")
@@ -130,6 +148,23 @@ def predict(request: PredictRequest):
     except Exception as e:
         logger.error(f"Prediction failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/health")
+def health():
+    logger.info("Health check endpoint called.")
+    return {"status": "ok"}
+
+
+@app.on_event("startup")
+def startup_event():
+    logger.info("🔥 FastAPI app has started up and is ready.")
+
+
+@app.get("/readiness")
+def readiness():
+    logger.info("Readiness check called.")
+    return {"status": "ready"}
 
 
 # @app.get("/")
