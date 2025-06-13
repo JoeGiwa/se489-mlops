@@ -81,6 +81,19 @@
 - Connected to `/predict` endpoint of the API
 - Triggered by `streamlit.yml` CI workflow on commit
 
+
+### Streamlit UI Deployment
+![Streamlit UI](img/Screenshot_2025-06-13_at_5.29.16_PM.jpg)
+
+### FastAPI /predict Endpoint
+![API Endpoint](img/Screenshot_2025-06-13_at_5.31.33_PM.jpg)
+
+### GCP Cloud Run Metrics
+![Metrics](img/Screenshot_2025-06-13_at_5.32.13_PM.jpg)
+
+### Cloud Run Logs
+![Logs](img/Screenshot_2025-06-13_at_7.39.11_AM.jpg)
+
 ---
 
 ## 4. Documentation & Repository Updates
