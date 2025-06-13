@@ -1,19 +1,11 @@
 model:
-  _target_: mlops_randproject.model_zoo.build_cnn
-  name: cnn
-  filters:
-  - 32
-  - 64
-  kernel_size: 3
-  pool_size: 2
-  dense_units: 128
+  name: mlp
+  hidden1: 128
+  hidden2: 64
   dropout: 0.5
+  l2: 0.001
   output: 10
   optimizer: adam
-  conv_layers: 2
-  learning_rate: 0.001
-  epochs: 10
-  batch_size: 32
 predict:
   test_features_path: ${env:RUN_ENV_BASE, .}/artifacts/test_features.npy
   test_labels_path: ${env:RUN_ENV_BASE, .}/artifacts/test_labels.npy
@@ -37,3 +29,6 @@ train:
     factor: 0.5
     patience: 5
     min_lr: 1.0e-06
+gcs:
+  upload_artifacts: true
+  bucket_name: mlops-bucket-se489rang

@@ -6,6 +6,7 @@ import wandb
 import joblib
 import logging
 import numpy as np
+import subprocess
 from datetime import datetime  # Add this import at the top with others
 from rich.console import Console
 from rich.logging import RichHandler
@@ -121,6 +122,7 @@ def main(cfg: DictConfig):
         else:
             # Train and save XGBoost model
             logger.info(" Training XGBoost model...")
+            artifact_dir = "artifacts"
             os.makedirs(artifact_dir, exist_ok=True)
             model.fit(X1_train_scaled, y1_train)
             joblib.dump(model, os.path.join(artifact_dir, "xgboost_model.pkl"))
@@ -138,6 +140,22 @@ def main(cfg: DictConfig):
         np.save("artifacts/test_labels.npy", y1_test)
         logger.info("Training complete!")
         console.rule("[bold green]Training Pipeline Complete ")
+
+        def upload_to_gcs(local_path, bucket_name):
+            if os.path.exists(local_path):
+                remote_path = f"gs://{bucket_name}/{local_path}"
+                subprocess.run(
+                    ["gsutil", "-m", "cp", "-r", local_path, remote_path], check=True
+                )
+                logger.info(f"✅ Uploaded {local_path} to {remote_path}")
+            else:
+                logger.warning(f"⚠️ {local_path} not found. Skipping GCS upload.")
+
+        # After training completes
+        if cfg.get("gcs") and cfg.gcs.upload_artifacts:
+            bucket = cfg.gcs.bucket_name
+            upload_to_gcs("artifacts/", bucket)
+            upload_to_gcs(cfg.hydra.run.dir, bucket)  # Upload full Hydra output folder
 
 
 if __name__ == "__main__":
