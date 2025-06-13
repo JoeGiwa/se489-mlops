@@ -218,4 +218,5 @@ This project demonstrates a complete MLOps lifecycle: from training to deploymen
 
 ---
 **Authors**: SE-489 Team
+
 **License**: MIT
