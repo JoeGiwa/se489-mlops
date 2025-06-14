@@ -82,19 +82,33 @@
 - Triggered by `streamlit.yml` CI workflow on commit
 
 
-### Streamlit UI Deployment
-![Streamlit UI](img/Screenshot_2025-06-13_at_5.29.16_PM.jpg)
+### 3.5 Interactive UI Deployment
 
-### FastAPI /predict Endpoint
-![API Endpoint](img/Screenshot_2025-06-13_at_5.31.33_PM.jpg)
+The Streamlit web app supports:
+- Manual input or CSV upload (58 features)
+- Model selection from dropdown (XGBoost, etc.)
+- Deployment to Cloud Run via GitHub Actions
 
-### GCP Cloud Run Metrics
-![Metrics](img/Screenshot_2025-06-13_at_5.32.13_PM.jpg)
+#### Streamlit UI
 
-### Cloud Run Logs
-![Logs](img/Screenshot_2025-06-13_at_7.39.11_AM.jpg)
+![Streamlit UI](docs/screes-1.jpg)
 
----
+#### FastAPI /predict Endpoint
+
+![FastAPI Endpoint](docs/SS-2.jpg)
+
+#### GCP Cloud Run Metrics
+
+> Showing request count, memory usage, instance count, and latency
+
+![Cloud Run Metrics](docs/SS-3.jpg)
+
+#### GCP Cloud Run Logs
+
+> Logs of container startup, model serving, and inference requests
+
+![Cloud Run Logs](docs/SS-4.jpg)
+
 
 ## 4. Documentation & Repository Updates
 
