@@ -82,7 +82,7 @@
 - Triggered by `streamlit.yml` CI workflow on commit
 
 
-### 3.6 Interactive UI Deployment
+### 3.6 UI Deployment
 
 The Streamlit web app supports:
 - Manual input or CSV upload (58 features)
