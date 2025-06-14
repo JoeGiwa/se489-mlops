@@ -6,6 +6,7 @@ on:
     branches:
       - hydra-config-setup
       - main
+      - phase3_v2
     paths:
       - 'dockerfiles/predict_model.dockerfile'
       - 'mlops_randproject/models/predict_model.py'
@@ -34,4 +35,4 @@ jobs:
           context: .
           file: dockerfiles/predict_model.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-predict:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-predict:latest,${{ secrets.DOCKERHUB_USERNAME }}/mlops-predict:v1

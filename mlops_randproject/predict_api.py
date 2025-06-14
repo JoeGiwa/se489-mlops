@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def predict(model, input_data):
     """
     Runs prediction on given input data using the trained model.

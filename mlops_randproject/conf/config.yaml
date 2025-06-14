@@ -29,3 +29,7 @@ train:
 hydra:
   run:
     dir: outputs/${now:%Y-%m-%d}/${model.name}_${now:%H-%M-%S}
+
+gcs:
+  upload_artifacts: true
+  bucket_name: mlops-bucket-se489rang

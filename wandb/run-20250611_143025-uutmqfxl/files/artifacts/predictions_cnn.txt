@@ -1,0 +1,1 @@
+/Users/Giwa/se489-mlops/artifacts/predictions_cnn.txt

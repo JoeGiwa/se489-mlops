@@ -1,6 +1,6 @@
-import torch
 import torch.nn as nn
 from torch import Tensor
+
 
 class MyNeuralNet(nn.Module):  # type: ignore[misc]
     """
@@ -10,6 +10,7 @@ class MyNeuralNet(nn.Module):  # type: ignore[misc]
         in_features (int): Number of input features.
         out_features (int): Number of output features.
     """
+
     def __init__(self, in_features: int, out_features: int) -> None:
         super().__init__()  # ✅ Correctly initializes the base class
         self.l1 = nn.Linear(in_features, 500)
@@ -27,4 +28,5 @@ class MyNeuralNet(nn.Module):  # type: ignore[misc]
             Tensor: Output tensor with shape [N, out_features].
         """
         return self.l2(self.relu(self.l1(x)))
+
     pass

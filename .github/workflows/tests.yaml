@@ -1,0 +1,77 @@
+name: Run Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+      - phase3_v2
+
+  pull_request:
+    branches:
+      - main
+      - phase3_v2
+
+jobs:
+  # Job to run unit tests across multiple OS and Python versions
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.9]
+        # python-version: [3.10, 3.11, 3.12]  # Uncomment to test multiple Python versions
+        # os: [ubuntu-latest, windows-latest, macos-latest]  # Uncomment to test multiple OS
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements_tests.txt
+
+      - name: Install DVC with GDrive support
+        run: |
+          pip install 'dvc[gdrive]'
+
+      - name: Decode and write GDrive credentials
+        run: |
+          mkdir -p .dvc
+          echo "$GDRIVE_CREDENTIALS_DATA" | base64 --decode > .dvc/gdrive-credentials.json
+          echo '[remote "myremote"]' > .dvc/config.local
+          echo '    gdrive_service_account_json_file_path = gdrive-credentials.json' >> .dvc/config.local
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+
+
+      - name: Pull data with DVC
+        run: dvc pull
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+
+      - name: Run pre-commit checks
+        run: |
+          pip install pre-commit
+          pre-commit run --all-files --show-diff-on-failure
+
+
+      - name: Run Pytest with Coverage
+        run: |
+          pip install coverage
+          coverage run -m pytest
+          coverage xml
+          coverage report
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml

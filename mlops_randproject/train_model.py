@@ -1,8 +1,10 @@
 import numpy as np
 
+
 class DummyModel:
     def predict(self, x):
         return np.random.rand(x.shape[0], 10)  # simulate probabilities for 10 genres
+
 
 def train_model():
     model = DummyModel()

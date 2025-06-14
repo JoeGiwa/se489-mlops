@@ -8,8 +8,9 @@ model:
   optimizer: adam
 predict:
   test_features_path: ${env:RUN_ENV_BASE, .}/artifacts/test_features.npy
+  test_labels_path: ${env:RUN_ENV_BASE, .}/artifacts/test_labels.npy
   weights_path: ${env:RUN_ENV_BASE, .}/artifacts/model.weights.h5
-  output_file: ${hydra:run.dir}/predictions_${model.name}.txt
+  output_file: ${env:RUN_ENV_BASE, .}/artifacts/predictions_${model.name}.txt
 data:
   path: data/raw
   sample_rate: 22050
@@ -28,3 +29,6 @@ train:
     factor: 0.5
     patience: 5
     min_lr: 1.0e-06
+gcs:
+  upload_artifacts: true
+  bucket_name: mlops-bucket-se489rang

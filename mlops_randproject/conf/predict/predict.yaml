@@ -1,4 +1,7 @@
 # conf/predict/predict.yaml
+
 test_features_path: ${env:RUN_ENV_BASE, .}/artifacts/test_features.npy
+test_labels_path: ${env:RUN_ENV_BASE, .}/artifacts/test_labels.npy
 weights_path: ${env:RUN_ENV_BASE, .}/artifacts/model.weights.h5
-output_file: ${hydra:run.dir}/predictions_${model.name}.txt
+# output_file: predictions_${model.name}.txt
+output_file: ${env:RUN_ENV_BASE, .}/artifacts/predictions_${model.name}.txt

@@ -1,0 +1,68 @@
+name: Deploy Streamlit UI to Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+      - phase3_v2
+    paths:
+      - 'streamlit/**'
+      - 'dockerfiles/streamlit.dockerfile'
+      - '.github/workflows/streamlit.yml'
+
+env:
+  REGION: us-central1
+  PROJECT_ID: utility-cumulus-462615-h4
+  REPO_NAME: mlops-repo
+  IMAGE_NAME: streamlit-ui
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker $REGION-docker.pkg.dev
+
+      - name: Build & Push Streamlit Docker Image
+        run: |
+          docker buildx build \
+            --platform=linux/amd64 \
+            -f dockerfiles/streamlit.dockerfile \
+            -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME \
+            --push \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache .
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy $IMAGE_NAME \
+            --image=$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE_NAME \
+            --platform=managed \
+            --region=$REGION \
+            --allow-unauthenticated \
+            --memory=1Gi \
+            --cpu=1 \
+            --port=8501

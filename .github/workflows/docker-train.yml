@@ -5,6 +5,7 @@ on:
     branches:
       - hydra-config-setup
       - main
+      - phase3_v2
 
 jobs:
 
@@ -30,4 +31,4 @@ jobs:
           context: .
           file: dockerfiles/train_model.dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-train:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mlops-train:latest,${{ secrets.DOCKERHUB_USERNAME }}/mlops-train:v1

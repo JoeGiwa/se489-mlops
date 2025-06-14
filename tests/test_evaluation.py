@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from mlops_randproject.evaluate import evaluate_model
 
+
 def test_evaluation_metrics_are_valid():
     # Simulate predictions and labels
     y_true = np.array([0, 1, 2, 1, 0])

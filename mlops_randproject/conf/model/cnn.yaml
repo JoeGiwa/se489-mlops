@@ -1,9 +1,16 @@
+# conf/model/cnn.yaml
+_target_: mlops_randproject.model_zoo.build_cnn
 name: cnn
-conv_layers: 2
 filters: [32, 64]
 kernel_size: 3
 pool_size: 2
-dropout: 0.5
 dense_units: 128
+dropout: 0.5
 output: 10
 optimizer: adam
+conv_layers: 2
+
+# Optional training parameters
+learning_rate: 0.001
+epochs: 10
+batch_size: 32

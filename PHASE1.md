@@ -10,28 +10,28 @@ This document presents the system planning, design choices, data engineering wor
 
 ### 1.1 Project Scope and Objectives
 
-**Problem Statement:**  
+**Problem Statement:**
 Music genre classification enables intelligent music indexing, recommendations, and playlist generation. Given the complexity of musical features and genre overlap, building a robust classifier for music genres is a challenging and impactful task.
 
-**Objective:**  
+**Objective:**
 - Build a scalable ML pipeline to classify music into 10 genres.
 - Compare traditional ML models with deep learning approaches.
 - Apply MLOps practices for versioning, automation, reproducibility, and modularity.
 - Automate training and evaluation workflows using tools like DVC, Hydra, and Make.
 
-**Success Metrics:**  
+**Success Metrics:**
 Traditional ML (e.g., SVM, RF): ≥ 80% accuracy on feature vectors.
 CNN-based classifier: ≥ 85% accuracy on mel-spectrogram images.
 Fully reproducible pipeline using Git, DVC, and Docker.
 
-**Tools:**  
-- Feature extraction: Librosa  
-- Modeling: Scikit-learn, Keras/TensorFlow  
-- Experiment tracking: MLflow  
-- Config management: Hydra  
-- Data tracking: DVC  
-- Code quality: ruff, mypy  
-- Project structure: Cookiecutter  
+**Tools:**
+- Feature extraction: Librosa
+- Modeling: Scikit-learn, Keras/TensorFlow
+- Experiment tracking: MLflow
+- Config management: Hydra
+- Data tracking: DVC
+- Code quality: ruff, mypy
+- Project structure: Cookiecutter
 - Automation: Makefile
 
 ---
@@ -81,14 +81,14 @@ Fully reproducible pipeline using Git, DVC, and Docker.
 ### 2.1 Repository Setup
 
 - Structured using [Cookiecutter Data Science template]
-- Source files in flat layout 
+- Source files in flat layout
 - Git + GitHub used for version control
 - DVC initialized and `.dvc` files tracked in Git
 
 ### 2.2 Environment Setup
 
 - Python 3.11 with virtual environment
-- Generated and tracked requirements.txt 
+- Generated and tracked requirements.txt
 - Docker setup planned for training and inference environments
 - Colab used for GPU-based training/testing
 
@@ -162,4 +162,3 @@ Fully reproducible pipeline using Git, DVC, and Docker.
 
 ### Phase 1 Outcome:
 - Phase 1 delivers a robust genre classification pipeline with reproducible setup, modular design, and baseline models. With configurations tracked via Hydra, data and models versioned with DVC, and automated evaluation steps in place, the project is well-positioned for Phase 2 advancements including experiment tracking, deployment, and CI/CD.
-

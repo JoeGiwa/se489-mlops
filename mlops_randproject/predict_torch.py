@@ -1,10 +1,8 @@
 import torch
 from torch import Tensor
 
-def predict(
-    model: torch.nn.Module,
-    dataloader: torch.utils.data.DataLoader
-) -> Tensor:
+
+def predict(model: torch.nn.Module, dataloader: torch.utils.data.DataLoader) -> Tensor:
     """Run prediction for a given model and dataloader.
     Args:
         model: model to use for prediction
